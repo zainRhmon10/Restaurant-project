@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:task_one/Model/product.dart';
-import 'package:task_one/constans.dart';
+
+import '../../Model/product.dart';
+import '../../constans.dart';
+
 
 // ignore: must_be_immutable
 class MostPurchased extends StatelessWidget {

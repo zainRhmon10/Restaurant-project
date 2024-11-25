@@ -1,5 +1,7 @@
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:task_one/View/home_page.dart';
+
+import '../View/home_page.dart';
+
 
 class NavigationController extends GetxController {
   int selectedIndex = 0;

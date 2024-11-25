@@ -1,13 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:order_delievery/View/product_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:task_one/Model/product.dart';
-import 'package:task_one/View/Widegt/main_category.dart';
-import 'package:task_one/View/Widegt/most_purchased.dart';
-import 'package:task_one/View/Widegt/top_home.dart';
-import 'package:task_one/View/product_page.dart';
-import 'package:task_one/constans.dart';
+
+
+import '../Model/product.dart';
+import '../constans.dart';
+import 'Widegt/main_category.dart';
+import 'Widegt/most_purchased.dart';
+import 'Widegt/top_home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

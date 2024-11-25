@@ -22,5 +22,11 @@
   <string>1.0</string>
   <key>MinimumOSVersion</key>
   <string>12.0</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>Description</string>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>Will you allow this app to always know your location?</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Do you allow this app to know your current location?</string>
 </dict>
 </plist>

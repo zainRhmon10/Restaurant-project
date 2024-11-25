@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:task_one/constans.dart';
+
+import '../../constans.dart';
+
 
 // ignore: must_be_immutable
 class TopHomePage extends StatelessWidget {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:task_one/Controller/pages_controller.dart';
-import 'package:task_one/View/home_page.dart';
-import 'package:task_one/constans.dart';
+
+import '../Controller/pages_controller.dart';
+import '../constans.dart';
+import 'home_page.dart';
 
 // ignore: must_be_immutable
 class DelivaryPage extends StatefulWidget {
