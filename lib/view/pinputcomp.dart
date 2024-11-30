@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:pinput/pinput.dart';
+
+import '../main.dart';
 
 class PinputComp extends StatefulWidget {
   const PinputComp({Key? key}) : super(key: key);
@@ -73,7 +77,18 @@ class _PinputCompState extends State<PinputComp> {
                 defaultPinTheme: defaultPinTheme,
                 separatorBuilder: (index) => const SizedBox(width: 8),
                 validator: (value) {
-                  return value == '2222' ? null : ('Pin is incorrect');
+                  if(value=='2222'){
+                    ///should be implemented using controller
+                    ///when activating verification code service
+                    // userData?.setString('email',email.text);
+                    // userData?.setString('phone',phoneNumber.text);
+
+                    Get.offAllNamed('/home');
+                  }
+
+                  else
+                    return 'Pin is incorrect';
+                //  return value == '2222' ? null : ('Pin is incorrect');
                 },
                 hapticFeedbackType: HapticFeedbackType.lightImpact,
                 onCompleted: (pin) {

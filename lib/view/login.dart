@@ -2,38 +2,83 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import 'create_account.dart';
 
-class Login extends StatelessWidget {
-   Login({Key? key}) : super(key: key);
-  TextEditingController phoneNumber = TextEditingController();
+import '../main.dart';
+import 'components/GradientText.dart';
 
-  TextEditingController password = TextEditingController();
-
-  GlobalKey<FormState> formState=GlobalKey<FormState>();
+class Login extends StatefulWidget {
 
   @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController phoneNumber = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController email=TextEditingController();
+  GlobalKey<FormState> formState=GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       body: Padding(
         padding: const EdgeInsets.only(top: 100,left: 50,right: 50,bottom: 50),
         child: Form(
           key: formState,
           child: Column(
             children: [
-              Text('Login',style: TextStyle(fontSize: 35,letterSpacing: 3),),
-              const SizedBox(height: 20),
+              GradientText('Login',style: Theme.of(context).textTheme.headlineMedium, gradient: LinearGradient(colors: [
+                Colors.yellow,
+                Colors.black,
+
+
+
+              ]),),
+              const SizedBox(height: 40),
               TextFormField(
+                cursorColor: Colors.black,
                 controller:phoneNumber,
                 validator: (value){
-
-                  if(value!.length<10)
-                    return 'phone-number should be at least 10 digits';
+                  if(value!.isEmpty)
+                    return 'required field';
+                  else if(!value!.isPhoneNumber)
+                    return 'phone number not valid';
                   return null;
                 },
                 keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  labelText: "Enter your phone number",
+                decoration:  InputDecoration(
+                  labelText: "phone number",
+                  labelStyle:Theme.of(context).textTheme.bodyLarge ,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    borderSide: BorderSide(color: Colors.black, width: 1.0),
+                  ),
+                ),
+
+              ), const SizedBox(height: 40)
+              ,TextFormField(
+                cursorColor: Colors.black,
+                controller:email,
+                validator: (value){
+                  if(value!.isEmpty)
+                    return 'required field';
+                 else if(!value.isEmail)
+                    return 'email not valid';
+                  return null;
+                },
+                keyboardType: TextInputType.phone,
+                decoration:InputDecoration(
+                  labelText: "email",
+                  labelStyle:Theme.of(context).textTheme.bodyLarge  ,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     borderSide: BorderSide(color: Colors.black),
@@ -48,19 +93,36 @@ class Login extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
               TextFormField(
+                cursorColor: Colors.black,
                 controller:password,
                 validator: (value){
 
-                  if(value!.length<8)
-                    return 'password should be at least 8 characters';
-                  return null;
+                  if (value != null) {
+                    if (value.isEmpty) {
+                      return "required field";
+                    } else if (value.length < 8) {
+                      return "wrong password";
+                    } else if (RegExp(r'^-?[0-9]+$').hasMatch(value)) {
+                      return 'wrong password';
+                    } else if (RegExp(r'^[a-z]+$').hasMatch(value)) {
+                      return 'wrong password';
+                    } else {
+                      return null;
+                    }
+                  } else {
+                    return null;
+                  }
+
+
+
                 },
 
                 keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  labelText: "Enter your password",
+                decoration:  InputDecoration(
+                  labelText: "password",
+                  labelStyle:Theme.of(context).textTheme.bodyLarge  ,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     borderSide: BorderSide(color: Colors.black),
@@ -75,24 +137,32 @@ class Login extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
 
-              const SizedBox(height: 20),
-              MaterialButton(
-                onPressed: (){
+              const SizedBox(height: 40),
+              MaterialButton(color: Colors.yellow[200],
+                minWidth: MediaQuery.of(context).size.width-100,
+                height: 55,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                onPressed: () async{
+
+
+
                   if(formState.currentState!.validate()){
-                    print("valid");
-                    print(password);
-                    Get.toNamed('/home');
+
+                    userData?.setString('email',email.text);
+                    userData?.setString('phone',phoneNumber.text);
+                    Get.offNamed('/home');
+
                   }
                 }
-                ,child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [Text('login',style: TextStyle(fontSize: 20),), Icon(Icons.arrow_right_alt_sharp,size: 40,),]),
+                ,child:  Row(mainAxisAlignment: MainAxisAlignment.center,children: [Text('login',style: TextStyle(fontSize: 20),), Icon(Icons.arrow_right_alt_sharp,size: 40,),]),
               ),
               Container(
 
                   child: MaterialButton(onPressed: (){
-                    Get.toNamed('/create_account');
-                  },child: Text("Don't have an account?",style: TextStyle(fontSize: 20,color: Colors.blue,
+                    print(userData?.getString('email'));
+                    Get.offNamed('/create_account');
+                  },child: Text("Don't have an account ?",style: TextStyle(fontSize: 20,color: Colors.blue,
                   ),))
               )
             ],
@@ -103,4 +173,3 @@ class Login extends StatelessWidget {
   }
 }
 
-void main() => runApp(MaterialApp(home: CreateAccount()));
