@@ -4,9 +4,10 @@ import 'package:order_delievery/MiddleWare/HomeMiddleWare.dart';
 import 'package:order_delievery/view/AnimationPage.dart';
 import 'package:order_delievery/view/pinputcomp.dart';
 import 'package:order_delievery/view/create_account.dart';
-import 'package:order_delievery/view/home.dart';
 import 'package:order_delievery/view/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'View/delivary_page.dart';
+import 'View/home_page.dart';
 SharedPreferences? userData;
 void main() async{
 
@@ -40,9 +41,10 @@ class MyApp extends StatelessWidget {
     getPages:[
       GetPage(name: '/splash', page: ()=>AnimationPage()),
       GetPage(name: '/create_account', page: ()=>CreateAccount()),
-      GetPage(name: '/home', page:()=>Home() ),
+      GetPage(name: '/home_page', page:()=>HomePage()),
       GetPage(name: '/login', page: ()=>Login(),middlewares: [HomeMiddleWare()]),
-      GetPage(name: '/pinput_comp', page: ()=>PinputComp())
+      GetPage(name: '/pinput_comp', page: ()=>PinputComp()),
+      GetPage(name: '/delivery', page: ()=>DelivaryPage()),
     ]
         
     );

@@ -6,8 +6,8 @@ class HomeMiddleWare extends GetMiddleware{
   @override
   RouteSettings? redirect(String? route){
 
-if(userData?.getString('email')!=null&&userData?.getString('phone')!=null) {
-  return  const RouteSettings(name: "/home");
+if(userData?.getString('token')!=null) {
+  return  const RouteSettings(name: "/delivery");
 }
 
 

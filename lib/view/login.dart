@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../main.dart';
 import 'components/GradientText.dart';
+import 'delivary_page.dart';
 
 class Login extends StatefulWidget {
 
@@ -151,7 +152,7 @@ class _LoginState extends State<Login> {
 
                     userData?.setString('email',email.text);
                     userData?.setString('phone',phoneNumber.text);
-                    Get.offNamed('/home');
+                    Get.off(DelivaryPage());
 
                   }
                 }

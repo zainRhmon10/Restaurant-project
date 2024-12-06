@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:order_delievery/View/login.dart';
+import 'package:order_delievery/main.dart';
 
 import '../Controller/pages_controller.dart';
 import '../constans.dart';
@@ -200,7 +202,9 @@ class _DelivaryPageState extends State<DelivaryPage> {
                       fontWeight: FontWeight.normal),
                 ),
                 onTap: () {
-                  Get.to(const HomePage());
+                  userData?.remove('token');
+                  Get.toNamed('/login');
+                  //call logout function from api
                 },
               ),
             ],
