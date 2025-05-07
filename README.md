@@ -1,2 +1,2 @@
 # Restaurant-project
-restaurant management system 
+Restaurant Management System 
