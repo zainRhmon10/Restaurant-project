@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   late VideoPlayerController _controller;
   List<String> eatingOptionsStrings=["delivery","take away","in restaurant"];
   List<Category> categories=[
-    Category(name: "meal",    img: "http://i.pinimg.com/736x/3e/c9/fe/3ec9fe32c6217014789b5f42e2343f47.jpg"),
+    Category(name: "meal",    img: "https://i.pinimg.com/736x/3e/c9/fe/3ec9fe32c6217014789b5f42e2343f47.jpg"),
     Category(name: "starter", img: "https://i.pinimg.com/736x/9e/89/83/9e898357752b6c91210b9ced6d864cc9.jpg"),
     Category(name: "dessert", img: "https://i.pinimg.com/736x/7f/52/bf/7f52bf9170a6250ce37a224dd1aa5aa5.jpg"),
     Category(name: "drink",   img: "https://i.pinimg.com/736x/33/47/42/334742476baa145ebc00a8ffeff7f1b8.jpg")];
@@ -42,8 +42,7 @@ void initState() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.onTertiary,
-
+        elevation: 0,
         title:InkWell(
           child: Container(
 
@@ -56,7 +55,7 @@ boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 2)],
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("choose a location for delivery ",style: TextStyle(color:Colors.grey,),),
+                Expanded(child: Text("choose a location for delivery ",style: TextStyle(color:Colors.grey,),)),
                 Icon(Icons.pin_drop,color: Colors.red,)
               ],
             )
@@ -93,7 +92,7 @@ boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 2)],
                        child: Column(
                          children: [
                            Container(
-                             margin: EdgeInsets.all(10),
+                             margin: EdgeInsets.only(top: 25,right: 10,left: 10,bottom: 10),
                              padding: EdgeInsets.all(5),
                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),
                                  border: widget.selectedOption==e? Border.all(color: Colors.orange,width: 2) : Border.all(color: Colors.white),
@@ -113,7 +112,7 @@ boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 2)],
                      ? AspectRatio(
                    aspectRatio: _controller.value.aspectRatio,
                    child: Padding(
-                     padding: const EdgeInsets.all(8.0),
+                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                      child: ClipRRect(
                        borderRadius: BorderRadius.circular(10),
                        child: VideoPlayer(
@@ -126,8 +125,8 @@ boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 2)],
                  Row(
                    children: [
                      Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Text("menu",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                       padding: const EdgeInsets.all(20.0),
+                       child: Text("Menu",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold),),
                      ),
                    ],
                  ),
@@ -141,16 +140,16 @@ boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 2)],
                    crossAxisCount: 2,
                   children: category(categories),),
 
-                 SizedBox(height: 10,),
                  Row(
                    children: [
                      Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Text("most purchased",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                       child: Text("Most purchased",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold),),
                      ),
                    ],
                  ),
-                 SizedBox(
+                 Container(
+                   padding: EdgeInsets.all(10),
                    height: 300,
                    child: ListView.builder(
                      shrinkWrap: true,
@@ -166,12 +165,13 @@ boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 2)],
                  Row(
                    children: [
                      Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Text("latest offers",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                       child: Text("Latest offers",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold),),
                      ),
                    ],
                  ),
-                 SizedBox(
+                 Container(
+                   padding: EdgeInsets.all(10),
                    height: 200,
                    child: ListView.builder(
                      shrinkWrap: true,
@@ -197,12 +197,13 @@ boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 2)],
                  Row(
                    children: [
                      Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Text("best choices",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                       child: Text("Best choices",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold),),
                      ),
                    ],
                  ),
-                 SizedBox(
+                 Container(
+                   padding: EdgeInsets.all(10),
                    height: 300,
                    child: ListView.builder(
                      shrinkWrap: true,
@@ -238,7 +239,7 @@ List<Widget> category(List<Category> c){
           ),
         ),
 
-        Text(e.name,style: TextStyle(fontSize: 24),)
+        Text(e.name,style: TextStyle(fontSize: 24, fontWeight:FontWeight.bold),)
       ],
     )
   ).toList();
@@ -261,11 +262,11 @@ Widget mealInShort(Meals m){
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Text(m.name,style: TextStyle(fontSize: 24),),
+          child: Text(m.name,style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Text("${m.price}\$",style: TextStyle(fontSize: 24),),
+          child: Text("${m.price}\$",style: TextStyle(fontSize: 20),),
         ),
         Container(
           height:30,
