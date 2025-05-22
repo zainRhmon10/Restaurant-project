@@ -41,6 +41,11 @@ dependencies:
   animated_text_kit: ^4.2.3
   flutter_otp_text_field: ^1.5.1+1
   http: ^1.4.0
+  dio: ^5.8.0+1
+  dart_extensions: ^2.2.4
+ # shared_preferences: ^2.5.3
+  carousel_slider: ^5.0.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +74,8 @@ flutter:
     -  assets/lotti/
     -  assets/onboarding/
     -  assets/new-password/
+    -  assets/accept_register/
+    -  assets/slider/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

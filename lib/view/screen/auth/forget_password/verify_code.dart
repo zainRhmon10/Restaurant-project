@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_restaurant/view/widget/forget_password/otp.dart';
+import 'package:flutter_application_restaurant/controller/auth/login_controller.dart';
+import 'package:flutter_application_restaurant/core/functions/validation.dart';
+import 'package:flutter_application_restaurant/view/widget/auth/login/textform_login.dart';
+import 'package:flutter_application_restaurant/view/widget/auth/forget_password/otp_verify.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class Verifycode extends StatelessWidget {
-  const Verifycode ({super.key});
+   Verifycode ({super.key});
+  LoginControllerImp cont= Get.put(LoginControllerImp());
   @override
    Widget build(BuildContext context) {
    final Size size = MediaQuery.of(context).size;
@@ -39,8 +45,33 @@ class Verifycode extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 100),
         child: Divider(thickness: 2,color: Color(0xFFFFFEE58),),
       ),
-            const SizedBox(height: 70),
-            Otp(),
+            const SizedBox(height: 40),
+            Textformlogin(text: 'Email',iconData: Icons.email_outlined,mycontoller:cont.email ,isNumber: false,
+            validator:  (val) {
+              return validInput(val!, 5, 100, "email");
+                    },
+          ),
+          const SizedBox(height: 40),
+            Otp_verify(),
+             SizedBox(height: 50,),
+  //             Buttonlogin(
+  //         text: 'Done ',
+  //         color:  Color(0xFFFDD05C),
+  //         onPressed: ()async{
+  //            bool success = await VerifyFuncs.verify(cont.email.text,cont.OTP.text);
+  //           if (success) {
+  //   Get.to(Verifycode());
+  // } else {
+  //   Get.snackbar(
+  //     'Error',
+  //     'Wrong email',
+  //     backgroundGradient: LinearGradient(colors: [Colors.red, Colors.white]),
+  //     snackPosition: SnackPosition.BOTTOM,
+  //   );
+  // };
+  //           Get.to(Resetpassword());
+  //         },
+  //        )
 
 
 

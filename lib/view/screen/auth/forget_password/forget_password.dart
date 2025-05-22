@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_restaurant/controller/auth/login_controller.dart';
 import 'package:flutter_application_restaurant/core/functions/validation.dart';
-import 'package:flutter_application_restaurant/view/screen/forget_password/verifycode.dart';
-import 'package:flutter_application_restaurant/view/widget/auth/Buttonlogin.dart';
-import 'package:flutter_application_restaurant/view/widget/auth/Textformlogin.dart';
+import 'package:flutter_application_restaurant/data/services/auth/login/forget_password/forget_serv.dart';
+import 'package:flutter_application_restaurant/view/screen/auth/forget_password/verify_code.dart';
+import 'package:flutter_application_restaurant/view/widget/auth/login/button_login.dart';
+import 'package:flutter_application_restaurant/view/widget/auth/login/textform_login.dart';
 import 'package:get/get.dart';
 
 class Forgetpassword extends StatelessWidget {
@@ -11,6 +13,7 @@ class Forgetpassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+   LoginControllerImp cont= Get.put(LoginControllerImp());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -45,15 +48,20 @@ class Forgetpassword extends StatelessWidget {
               child: Divider(thickness: 2,color: Color(0xFFFFFEE58),),
       ),
           const SizedBox(height: 70),
-          Textformlogin(text: 'Email',iconData: Icons.email_outlined,mycontoller: null,isNumber: false,
+          Textformlogin(text: 'Email',iconData: Icons.email_outlined,mycontoller:cont.email ,isNumber: false,
             validator:  (val) {
               return validInput(val!, 5, 100, "email");
                     },
           ),
           const SizedBox(height: 70),
-          Buttonlogin(text: 'Send  ',onPressed: () {
-            Get.to(Verifycode());
-          },
+          Buttonlogin(text: 'Send  ',
+            onPressed: () async {
+            if(cont.formstate.currentState!.validate()){
+           bool success = await ForgetServ.forget(cont.email.text);
+            if (success) {
+              Get.to(Verifycode());
+            } 
+              }},
           color: Color(0xFFFFFEE58),
           )
           ,
